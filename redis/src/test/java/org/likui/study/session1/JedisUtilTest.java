@@ -6,9 +6,7 @@ import org.junit.Test;
 import org.likui.study.redis.session1.JedisUtil;
 import redis.clients.jedis.Jedis;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class JedisUtilTest {
@@ -161,5 +159,14 @@ public class JedisUtilTest {
         System.out.println("判断hash中是否存在key3："+jedis.hexists("hash","key3"));
         System.out.println("获取hash中的值："+jedis.hmget("hash","key3"));
         System.out.println("获取hash中的值："+jedis.hmget("hash","key3","key4"));
+    }
+
+    @Test
+    public void testSet() {
+        Set<String> set = new HashSet<String>();
+        set.add("1");
+        set.add("2");
+        Object[] objects = set.toArray();
+        System.out.println(Arrays.toString(objects));
     }
 }

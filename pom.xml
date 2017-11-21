@@ -11,6 +11,10 @@
     <modules>
         <module>redis</module>
         <module>validation</module>
+        <module>powermock</module>
+        <module>qgenerator</module>
+        <module>QLExpress</module>
+        <module>Assert</module>
     </modules>
 
 
