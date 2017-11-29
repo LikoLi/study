@@ -18,4 +18,5 @@ public class EmployeeServiceTest {
         Assert.assertTrue(result);
         PowerMockito.verifyPrivate(employeeService).invoke("checkExist", "liko");
     }
+
 }
