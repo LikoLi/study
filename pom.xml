@@ -15,6 +15,8 @@
         <module>qgenerator</module>
         <module>QLExpress</module>
         <module>Assert</module>
+        <module>encoder</module>
+        <module>OCR</module>
     </modules>
 
 
