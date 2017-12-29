@@ -17,6 +17,9 @@
         <module>Assert</module>
         <module>encoder</module>
         <module>OCR</module>
+        <module>dubbo</module>
+        <module>nexus</module>
+        <module>mybatisgenerator</module>
     </modules>
 
 
