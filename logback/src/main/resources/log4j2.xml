@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Don't forget to set system property
+-Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+     to make all loggers asynchronous. -->
+
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+        <RandomAccessFile name="RandomAccessFile" fileName="asygfnc.log" immediateFlush="false" append="false">
+            <PatternLayout>
+                <Pattern>[%-5level] [%d{HH:mm:ss}] [%-30thread] %logger.%method >> %msg%n</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <logger name="org.liko" level="info" additivity="false">
+            <appender-ref ref="RandomAccessFile" />
+        </logger>
+
+        <Root level="error" includeLocation="false">
+            <AppenderRef ref="RandomAccessFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

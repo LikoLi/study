@@ -1,4 +1,4 @@
-package powermock.staticMock;
+package powermock.staticMock2;
 
 public class MockDao {
     public void call() {

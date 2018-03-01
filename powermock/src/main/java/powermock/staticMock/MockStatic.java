@@ -6,4 +6,9 @@ public class MockStatic {
     public static void mockStatic() {
         mockDao.call();
     }
+
+    public static void mockStatic1() {
+        MockDao.staticMethod();
+        throw new RuntimeException("llala");
+    }
 }

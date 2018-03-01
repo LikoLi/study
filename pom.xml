@@ -20,6 +20,8 @@
         <module>dubbo</module>
         <module>nexus</module>
         <module>mybatisgenerator</module>
+        <module>SqlApply</module>
+        <module>logtest</module>
     </modules>
 
 
