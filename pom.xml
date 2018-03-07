@@ -22,6 +22,8 @@
         <module>mybatisgenerator</module>
         <module>SqlApply</module>
         <module>logtest</module>
+        <module>SpringMVC</module>
+        <module>webtest</module>
     </modules>
 
 
