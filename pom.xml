@@ -24,6 +24,8 @@
         <module>logtest</module>
         <module>SpringMVC</module>
         <module>webtest</module>
+        <module>test</module>
+        <module>react</module>
     </modules>
 
 
