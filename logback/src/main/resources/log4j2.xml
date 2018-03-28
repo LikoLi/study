@@ -7,18 +7,14 @@
 <Configuration status="WARN">
     <Appenders>
         <!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
-        <RandomAccessFile name="RandomAccessFile" fileName="asygfnc.log" immediateFlush="false" append="false">
+        <RandomAccessFile name="RandomAccessFile" fileName="async.log" immediateFlush="false" append="false">
             <PatternLayout>
-                <Pattern>[%-5level] [%d{HH:mm:ss}] [%-30thread] %logger.%method >> %msg%n</Pattern>
+                <Pattern>%d %p %c{1.} [%t] %m %ex%n</Pattern>
             </PatternLayout>
         </RandomAccessFile>
     </Appenders>
     <Loggers>
-        <logger name="org.liko" level="info" additivity="false">
-            <appender-ref ref="RandomAccessFile" />
-        </logger>
-
-        <Root level="error" includeLocation="false">
+        <Root level="info" includeLocation="false">
             <AppenderRef ref="RandomAccessFile"/>
         </Root>
     </Loggers>
