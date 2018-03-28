@@ -102,6 +102,7 @@ public class ExcelUtil {
 
     public <T> List<T> getInstanceBySheetNameAndType(String sheetName, T t) throws IllegalAccessException, InstantiationException, NoSuchFieldException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
         title.clear();
+        rowNum = 0;
         HSSFSheet sheet = workbook.getSheet(sheetName);
         List result = new ArrayList();
         for (; rowNum <= sheet.getLastRowNum(); rowNum++) {

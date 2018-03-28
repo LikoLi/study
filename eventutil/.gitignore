@@ -1,0 +1,10 @@
+asspath
+
+.project
+.settings
+
+.idea
+*.iml
+logs
+
+
