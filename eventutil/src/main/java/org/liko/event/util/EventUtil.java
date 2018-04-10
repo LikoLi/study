@@ -1,5 +1,6 @@
 package org.liko.event.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -58,11 +59,17 @@ public class EventUtil {
         // 1.创建ExcelUtil
         ExcelUtil excelUtil = new ExcelUtil(PATH);
 
-        // 2.从excel中获取事件定义表数据
-        List<EventstructdefExt> eventstructdefExtList = excelUtil.getInstanceBySheetNameAndType(EventstructdefExt.class.getSimpleName(), new EventstructdefExt());
+        // 2.从excel中获取事件定义表数据, 并过滤无效数据
+        List<EventstructdefExt> eventstructdefExtList = excelUtil.getInstanceBySheetNameAndType(EventstructdefExt.class.getSimpleName(), new EventstructdefExt())
+                .stream()
+                .filter(eventstructdefExt -> StringUtils.isNotEmpty(eventstructdefExt.getGroupName()))
+                .collect(Collectors.toList());
 
         // 3.从excel中获取事件字段表数据
-        List<EventfielddefExt> eventfielddefExtList = excelUtil.getInstanceBySheetNameAndType(EventfielddefExt.class.getSimpleName(), new EventfielddefExt());
+        List<EventfielddefExt> eventfielddefExtList = excelUtil.getInstanceBySheetNameAndType(EventfielddefExt.class.getSimpleName(), new EventfielddefExt())
+                .stream()
+                .filter(eventfielddefExt -> StringUtils.isNotEmpty(eventfielddefExt.getName()))
+                .collect(Collectors.toList());
 
         // 4.获取外部事件定义表中的gourp name
         Set<String> groupName = new HashSet<>();
@@ -96,7 +103,10 @@ public class EventUtil {
         List<Eventstructdef> eventstructdefList = eventstructdefMapper.selectAll();
 
         // 12.将事件定义数据转成map
-        Map<String, Integer> eventId = eventstructdefList.stream().filter(eventstructdef -> eventName.contains(eventstructdef.getName())).collect(Collectors.toMap(Eventstructdef::getName, Eventstructdef::getId));
+        Map<String, Integer> eventId = eventstructdefList
+                .stream()
+                .filter(eventstructdef -> eventName.contains(eventstructdef.getName()))
+                .collect(Collectors.toMap(Eventstructdef::getName, Eventstructdef::getId));
 
         // 13.删除所有事件定义表中所有事件关联的字段
         List<String> ids = new ArrayList<>();
