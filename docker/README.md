@@ -1,0 +1,1 @@
+Docker auto build project!

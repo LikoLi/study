@@ -1,0 +1,14 @@
+.sor-search {
+	float: right;
+	margin-top: 20px;
+}
+
+.sor-pagination {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.sor-content {
+	width: 80%;
+	margin: 0 auto;
+}
