@@ -34,6 +34,7 @@
         <module>poi</module>
         <module>poi</module>
         <module>lombok</module>
+        <module>think-in-java-4</module>
     </modules>
 
 
