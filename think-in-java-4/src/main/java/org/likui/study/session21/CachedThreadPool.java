@@ -10,5 +10,6 @@ public class CachedThreadPool {
             exec.execute(new LiftOff());
         }
         exec.shutdown();
+        System.out.println("Executor Exit!");
     }
 }
