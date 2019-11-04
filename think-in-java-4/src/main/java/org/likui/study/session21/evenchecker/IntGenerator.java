@@ -1,4 +1,4 @@
-package org.likui.study.session21.eventchecker;
+package org.likui.study.session21.evenchecker;
 
 /**
  * IntGenerator
