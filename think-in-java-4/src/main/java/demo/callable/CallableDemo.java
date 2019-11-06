@@ -1,4 +1,6 @@
-package org.likui.study.session21;
+package demo.callable;
+
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -12,6 +14,10 @@ import java.util.concurrent.*;
 public class CallableDemo {
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
+
+//        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
+//        ExecutorService exec = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
         ArrayList<Future<String>> results = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             results.add(exec.submit(new TaskWithResult(i)));
