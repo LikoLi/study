@@ -16,18 +16,18 @@ import java.net.Socket;
 @SpringBootTest
 public class PigeonRaceApplicationTests {
 
-	@Test
-	public void contextLoads() throws IOException {
-		Socket socket = new Socket("localhost", 9898);
-		OutputStream outputStream = socket.getOutputStream();
-		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+    @Test
+    public void contextLoads() throws IOException {
+        Socket socket = new Socket("localhost", 9898);
+        OutputStream outputStream = socket.getOutputStream();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
 
-		bufferedWriter.write("line one");
-		bufferedWriter.newLine();
-		bufferedWriter.write("line two");
-		bufferedWriter.newLine();
-		bufferedWriter.flush();
-		socket.close();
-	}
+        bufferedWriter.write("line one");
+        bufferedWriter.newLine();
+        bufferedWriter.write("line two");
+        bufferedWriter.newLine();
+        bufferedWriter.flush();
+        socket.close();
+    }
 
 }

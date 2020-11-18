@@ -35,7 +35,7 @@ public class InParamGenerator {
     }
 
     private static void generateFromFtl(List<InParamEntity> entities, boolean overWrite) {
-        
+
     }
 
     private static List<InParamEntity> parseEntity(InparamGeneratorInfo info) {
@@ -224,7 +224,7 @@ public class InParamGenerator {
 
         List<Constant> constantList = new ArrayList<>();
         int pos = comment.indexOf("<>");
-        if(pos != -1) {
+        if (pos != -1) {
             String[] constants = comment.substring(pos + 2).split("&");
 
             for (String c : constants) {

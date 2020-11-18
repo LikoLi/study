@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
  */
 public class Exercises14 {
     private static final int SIZE = 10000;
+
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
         for (int i = 0; i < SIZE; i++) {

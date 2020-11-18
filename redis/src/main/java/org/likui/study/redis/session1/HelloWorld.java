@@ -9,10 +9,12 @@ import java.util.Set;
 
 public class HelloWorld {
     private Jedis jedis = null;
+
     @Before
     public void before() {
         jedis = new Jedis("127.0.0.1");
     }
+
     /**
      * 测试连通性
      */

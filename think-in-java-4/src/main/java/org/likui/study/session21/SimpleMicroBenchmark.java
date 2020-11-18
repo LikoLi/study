@@ -11,6 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 abstract class Incrementable {
     protected long counter = 0;
+
     public abstract void increment();
 }
 
@@ -51,7 +52,7 @@ public class SimpleMicroBenchmark {
         long lockTime = test(new LockingTest());
         System.out.printf("synchronized: %1$10d\n", synchTime);
         System.out.printf("Lock:         %1$10d\n", lockTime);
-        System.out.printf("Lock/synchronized = %1$.3f", (double)lockTime / (double)synchTime);
+        System.out.printf("Lock/synchronized = %1$.3f", (double) lockTime / (double) synchTime);
 
     }
 }

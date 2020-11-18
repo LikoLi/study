@@ -98,7 +98,7 @@ public class RocketmqLogbackAppender extends AppenderBase<ILoggingEvent> {
             producer = ProducerInstance.getProducerInstance().getInstance(nameServerAddress, producerGroup);
         } catch (Exception e) {
             addError("Starting RocketmqLogbackAppender [" + this.getName()
-                + "] nameServerAddress:" + nameServerAddress + " group:" + producerGroup + " " + e.getMessage());
+                    + "] nameServerAddress:" + nameServerAddress + " group:" + producerGroup + " " + e.getMessage());
         }
         if (producer != null) {
             super.start();
@@ -120,7 +120,7 @@ public class RocketmqLogbackAppender extends AppenderBase<ILoggingEvent> {
             ProducerInstance.getProducerInstance().removeAndClose(this.nameServerAddress, this.producerGroup);
         } catch (Exception e) {
             addError("Closeing RocketmqLogbackAppender [" + this.getName()
-                + "] nameServerAddress:" + nameServerAddress + " group:" + producerGroup + " " + e.getMessage());
+                    + "] nameServerAddress:" + nameServerAddress + " group:" + producerGroup + " " + e.getMessage());
         }
 
         // Help garbage collection

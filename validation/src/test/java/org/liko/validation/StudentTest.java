@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
-public class StudentTest implements Serializable{
+public class StudentTest implements Serializable {
     private static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
     public static <T> List<String> validate(T t) {

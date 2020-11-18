@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
@@ -65,7 +66,7 @@ public class RMQOrderListener extends AbstractListener implements MessageListene
     }
 
     public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs,
-        ConsumeOrderlyContext context) {
+                                               ConsumeOrderlyContext context) {
         for (MessageExt msg : msgs) {
             if (isDebug) {
                 if (listenerName != null && listenerName != "") {

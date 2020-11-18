@@ -22,7 +22,6 @@ import com.github.jaiimageio.plugins.tiff.TIFFImageWriteParam;
  * 识别图片中的文字
  *
  * @author zlj
- *
  */
 public class ImageIOHelper {
     /**

@@ -87,6 +87,7 @@ public class NofifyVsNotifyAll {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             boolean prod = true;
+
             @Override
             public void run() {
                 if (prod) {

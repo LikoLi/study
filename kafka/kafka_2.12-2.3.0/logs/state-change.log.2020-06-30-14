@@ -1,0 +1,1 @@
+[2020-06-30 14:35:21,475] TRACE [Controller id=0 epoch=9] Received response {error_code=0} for request UPDATE_METADATA with correlation id 0 sent to broker likos-mbp:9092 (id: 0 rack: null) (state.change.logger)

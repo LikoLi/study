@@ -19,8 +19,10 @@ package org.apache.rocketmq.tools.command;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
@@ -121,8 +123,8 @@ public class MQAdminStartup {
 
                         Options options = ServerUtil.buildCommandlineOptions(new Options());
                         final CommandLine commandLine =
-                            ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options),
-                                new PosixParser());
+                                ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options),
+                                        new PosixParser());
                         if (null == commandLine) {
                             return;
                         }
@@ -249,11 +251,11 @@ public class MQAdminStartup {
     public static RPCHook getAclRPCHook() {
         String fileHome = System.getProperty(MixAll.ROCKETMQ_HOME_PROPERTY, System.getenv(MixAll.ROCKETMQ_HOME_ENV));
         String fileName = "/conf/tools.yml";
-        JSONObject yamlDataObject = AclUtils.getYamlDataObject(fileHome + fileName ,
+        JSONObject yamlDataObject = AclUtils.getYamlDataObject(fileHome + fileName,
                 JSONObject.class);
 
         if (yamlDataObject == null || yamlDataObject.isEmpty()) {
-            System.out.printf(" Cannot find conf file %s, acl is not be enabled.%n" ,fileHome + fileName);
+            System.out.printf(" Cannot find conf file %s, acl is not be enabled.%n", fileHome + fileName);
             return null;
         }
 
@@ -264,6 +266,6 @@ public class MQAdminStartup {
             System.out.printf("AccessKey or secretKey is blank, the acl is not enabled.%n");
             return null;
         }
-        return new AclClientRPCHook(new SessionCredentials(accessKey,secretKey));
+        return new AclClientRPCHook(new SessionCredentials(accessKey, secretKey));
     }
 }

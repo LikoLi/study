@@ -36,18 +36,18 @@ public class DispatchRequest {
     private byte[] bitMap;
 
     public DispatchRequest(
-        final String topic,
-        final int queueId,
-        final long commitLogOffset,
-        final int msgSize,
-        final long tagsCode,
-        final long storeTimestamp,
-        final long consumeQueueOffset,
-        final String keys,
-        final String uniqKey,
-        final int sysFlag,
-        final long preparedTransactionOffset,
-        final Map<String, String> propertiesMap
+            final String topic,
+            final int queueId,
+            final long commitLogOffset,
+            final int msgSize,
+            final long tagsCode,
+            final long storeTimestamp,
+            final long consumeQueueOffset,
+            final String keys,
+            final String uniqKey,
+            final int sysFlag,
+            final long preparedTransactionOffset,
+            final Map<String, String> propertiesMap
     ) {
         this.topic = topic;
         this.queueId = queueId;

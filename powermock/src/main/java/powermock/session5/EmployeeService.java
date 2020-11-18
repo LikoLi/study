@@ -5,6 +5,7 @@ import powermock.session4.EmployeeDao;
 
 public class EmployeeService {
     private static EmployeeDao employeeDao = new EmployeeDao();
+
     public int getTotalEmployee() {
         return employeeDao.getTotal();
     }

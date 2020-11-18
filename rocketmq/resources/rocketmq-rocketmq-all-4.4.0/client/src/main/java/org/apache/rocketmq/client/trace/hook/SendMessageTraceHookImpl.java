@@ -24,6 +24,7 @@ import org.apache.rocketmq.client.trace.TraceContext;
 import org.apache.rocketmq.client.trace.TraceDispatcher;
 import org.apache.rocketmq.client.trace.TraceBean;
 import org.apache.rocketmq.client.trace.TraceType;
+
 import java.util.ArrayList;
 
 public class SendMessageTraceHookImpl implements SendMessageHook {
@@ -66,7 +67,7 @@ public class SendMessageTraceHookImpl implements SendMessageHook {
     public void sendMessageAfter(SendMessageContext context) {
         //if it is message trace data,then it doesn't recorded
         if (context == null || context.getMessage().getTopic().startsWith(((AsyncTraceDispatcher) localDispatcher).getTraceTopicName())
-            || context.getMqTraceContext() == null) {
+                || context.getMqTraceContext() == null) {
             return;
         }
         if (context.getSendResult() == null) {
@@ -74,7 +75,7 @@ public class SendMessageTraceHookImpl implements SendMessageHook {
         }
 
         if (context.getSendResult().getRegionId() == null
-            || !context.getSendResult().isTraceOn()) {
+                || !context.getSendResult().isTraceOn()) {
             // if switch is false,skip it
             return;
         }

@@ -18,6 +18,7 @@
 package org.apache.rocketmq.srvutil;
 
 import com.google.common.base.Strings;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,6 +28,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.rocketmq.common.ServiceThread;
 import org.apache.rocketmq.common.UtilAll;
 import org.apache.rocketmq.common.constant.LoggerName;
@@ -43,7 +45,7 @@ public class FileWatchService extends ServiceThread {
     private MessageDigest md = MessageDigest.getInstance("MD5");
 
     public FileWatchService(final String[] watchFiles,
-        final Listener listener) throws Exception {
+                            final Listener listener) throws Exception {
         this.listener = listener;
         this.watchFiles = new ArrayList<>();
         this.fileCurrentHash = new ArrayList<>();
@@ -99,6 +101,7 @@ public class FileWatchService extends ServiceThread {
     public interface Listener {
         /**
          * Will be called when the target files are changed
+         *
          * @param path the changed file path
          */
         void onChanged(String path);

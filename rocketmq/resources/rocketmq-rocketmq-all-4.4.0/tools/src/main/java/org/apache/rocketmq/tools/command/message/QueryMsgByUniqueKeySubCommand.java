@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -40,80 +41,80 @@ import org.apache.rocketmq.tools.command.SubCommandException;
 public class QueryMsgByUniqueKeySubCommand implements SubCommand {
 
     public static void queryById(final DefaultMQAdminExt admin, final String topic,
-        final String msgId) throws MQClientException,
-        RemotingException, MQBrokerException, InterruptedException, IOException {
+                                 final String msgId) throws MQClientException,
+            RemotingException, MQBrokerException, InterruptedException, IOException {
         MessageExt msg = admin.viewMessage(topic, msgId);
 
         String bodyTmpFilePath = createBodyFile(msg);
 
         System.out.printf("%-20s %s%n",
-            "Topic:",
-            msg.getTopic()
+                "Topic:",
+                msg.getTopic()
         );
 
         System.out.printf("%-20s %s%n",
-            "Tags:",
-            "[" + msg.getTags() + "]"
+                "Tags:",
+                "[" + msg.getTags() + "]"
         );
 
         System.out.printf("%-20s %s%n",
-            "Keys:",
-            "[" + msg.getKeys() + "]"
+                "Keys:",
+                "[" + msg.getKeys() + "]"
         );
 
         System.out.printf("%-20s %d%n",
-            "Queue ID:",
-            msg.getQueueId()
+                "Queue ID:",
+                msg.getQueueId()
         );
 
         System.out.printf("%-20s %d%n",
-            "Queue Offset:",
-            msg.getQueueOffset()
+                "Queue Offset:",
+                msg.getQueueOffset()
         );
 
         System.out.printf("%-20s %d%n",
-            "CommitLog Offset:",
-            msg.getCommitLogOffset()
+                "CommitLog Offset:",
+                msg.getCommitLogOffset()
         );
 
         System.out.printf("%-20s %d%n",
-            "Reconsume Times:",
-            msg.getReconsumeTimes()
+                "Reconsume Times:",
+                msg.getReconsumeTimes()
         );
 
         System.out.printf("%-20s %s%n",
-            "Born Timestamp:",
-            UtilAll.timeMillisToHumanString2(msg.getBornTimestamp())
+                "Born Timestamp:",
+                UtilAll.timeMillisToHumanString2(msg.getBornTimestamp())
         );
 
         System.out.printf("%-20s %s%n",
-            "Store Timestamp:",
-            UtilAll.timeMillisToHumanString2(msg.getStoreTimestamp())
+                "Store Timestamp:",
+                UtilAll.timeMillisToHumanString2(msg.getStoreTimestamp())
         );
 
         System.out.printf("%-20s %s%n",
-            "Born Host:",
-            RemotingHelper.parseSocketAddressAddr(msg.getBornHost())
+                "Born Host:",
+                RemotingHelper.parseSocketAddressAddr(msg.getBornHost())
         );
 
         System.out.printf("%-20s %s%n",
-            "Store Host:",
-            RemotingHelper.parseSocketAddressAddr(msg.getStoreHost())
+                "Store Host:",
+                RemotingHelper.parseSocketAddressAddr(msg.getStoreHost())
         );
 
         System.out.printf("%-20s %d%n",
-            "System Flag:",
-            msg.getSysFlag()
+                "System Flag:",
+                msg.getSysFlag()
         );
 
         System.out.printf("%-20s %s%n",
-            "Properties:",
-            msg.getProperties() != null ? msg.getProperties().toString() : ""
+                "Properties:",
+                msg.getProperties() != null ? msg.getProperties().toString() : ""
         );
 
         System.out.printf("%-20s %s%n",
-            "Message Body Path:",
-            bodyTmpFilePath
+                "Message Body Path:",
+                bodyTmpFilePath
         );
 
         try {
@@ -194,7 +195,7 @@ public class QueryMsgByUniqueKeySubCommand implements SubCommand {
                 final String consumerGroup = commandLine.getOptionValue('g').trim();
                 final String clientId = commandLine.getOptionValue('d').trim();
                 ConsumeMessageDirectlyResult result =
-                    defaultMQAdminExt.consumeMessageDirectly(consumerGroup, clientId, topic, msgId);
+                        defaultMQAdminExt.consumeMessageDirectly(consumerGroup, clientId, topic, msgId);
                 System.out.printf("%s", result);
             } else {
                 queryById(defaultMQAdminExt, topic, msgId);

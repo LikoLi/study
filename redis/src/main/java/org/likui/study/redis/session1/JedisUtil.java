@@ -12,7 +12,8 @@ import java.util.Map;
 public class JedisUtil {
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private JedisUtil() {}
+    private JedisUtil() {
+    }
 
     private static class RedisUtilHolder {
         private static final JedisUtil instance = new JedisUtil();
@@ -27,7 +28,7 @@ public class JedisUtil {
     private static JedisPool getPool(String ip, int port) {
         String key = ip + ":" + port;
         JedisPool pool = null;
-        if(!maps.containsKey(key)) {
+        if (!maps.containsKey(key)) {
             JedisPoolConfig config = new JedisPoolConfig();
             config.setMaxTotal(RedisConfig.MAX_ACTIVE);
             config.setMaxIdle(RedisConfig.MAX__IDLE);
@@ -52,7 +53,7 @@ public class JedisUtil {
             try {
                 jedis = getPool(ip, port).getResource();
             } catch (Exception e) {
-                logger.error("get redis master1 failed !" , e);
+                logger.error("get redis master1 failed !", e);
                 getPool(ip, port).returnBrokenResource(jedis);
             }
         } while (jedis == null && count < RedisConfig.RETRY_NUM);

@@ -3,7 +3,7 @@ package org.liko.validation;
 /**
  *
  */
-public enum  CaseMode {
+public enum CaseMode {
     UPPER,
     LOWER;
 }

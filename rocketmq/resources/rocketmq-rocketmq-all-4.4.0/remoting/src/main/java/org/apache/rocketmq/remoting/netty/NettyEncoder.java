@@ -19,7 +19,9 @@ package org.apache.rocketmq.remoting.netty;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
+
 import java.nio.ByteBuffer;
+
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.common.RemotingUtil;
 import org.apache.rocketmq.logging.InternalLogger;
@@ -31,7 +33,7 @@ public class NettyEncoder extends MessageToByteEncoder<RemotingCommand> {
 
     @Override
     public void encode(ChannelHandlerContext ctx, RemotingCommand remotingCommand, ByteBuf out)
-        throws Exception {
+            throws Exception {
         try {
             ByteBuffer header = remotingCommand.encodeHeader();
             out.writeBytes(header);

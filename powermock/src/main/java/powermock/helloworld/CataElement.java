@@ -9,8 +9,9 @@ import java.util.List;
 public class CataElement {
     private boolean isAvailable = false;
     private List<FileItem> items = new ArrayList<>();
+
     private Date parseDate(String date) {
-        if (!isAvailable)  return null;
+        if (!isAvailable) return null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try {
             if (date == null || date.isEmpty()) {

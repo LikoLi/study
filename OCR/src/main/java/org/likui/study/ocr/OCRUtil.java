@@ -12,8 +12,8 @@ import org.jdesktop.swingx.util.OS;
 
 /**
  * 从图片中识别文字
- * @author zlj
  *
+ * @author zlj
  */
 public class OCRUtil {
     private final String LANG_OPTION = "-l"; // 英文字母小写l，并非数字1
@@ -23,6 +23,7 @@ public class OCRUtil {
 
     /**
      * 从图片中识别文字
+     *
      * @param imageFile
      * @param imageFormat
      * @return text recognized in image
@@ -34,9 +35,9 @@ public class OCRUtil {
     }
 
 
-
     /**
      * 识别图片中的文字
+     *
      * @param tempImage
      * @param imageFile
      * @return

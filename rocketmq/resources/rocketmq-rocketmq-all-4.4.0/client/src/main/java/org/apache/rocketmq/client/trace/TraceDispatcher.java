@@ -17,6 +17,7 @@
 package org.apache.rocketmq.client.trace;
 
 import org.apache.rocketmq.client.exception.MQClientException;
+
 import java.io.IOException;
 
 /**
@@ -31,6 +32,7 @@ public interface TraceDispatcher {
 
     /**
      * Append the transfering data
+     *
      * @param ctx data infomation
      * @return
      */

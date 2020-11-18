@@ -10,12 +10,14 @@ import static net.mindview.util.Print.print;
  */
 class DualSynch {
     private Object syncObject = new Object();
+
     public synchronized void f() {
         for (int i = 0; i < 5; i++) {
             print("f()");
             Thread.yield();
         }
     }
+
     public void g() {
         synchronized (syncObject) {
             for (int i = 0; i < 5; i++) {

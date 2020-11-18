@@ -18,6 +18,7 @@ package org.apache.rocketmq.tools.command.connection;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -67,11 +68,11 @@ public class ConsumerConnectionSubCommand implements SubCommand {
             int i = 1;
             for (Connection conn : cc.getConnectionSet()) {
                 System.out.printf("%03d  %-32s %-22s %-8s %s%n",
-                    i++,
-                    conn.getClientId(),
-                    conn.getClientAddr(),
-                    conn.getLanguage(),
-                    MQVersion.getVersionDesc(conn.getVersion())
+                        i++,
+                        conn.getClientId(),
+                        conn.getClientAddr(),
+                        conn.getLanguage(),
+                        MQVersion.getVersionDesc(conn.getVersion())
                 );
             }
 
@@ -82,9 +83,9 @@ public class ConsumerConnectionSubCommand implements SubCommand {
                 Entry<String, SubscriptionData> entry = it.next();
                 SubscriptionData sd = entry.getValue();
                 System.out.printf("%03d  Topic: %-40s SubExpression: %s%n",
-                    i++,
-                    sd.getTopic(),
-                    sd.getSubString()
+                        i++,
+                        sd.getTopic(),
+                        sd.getSubString()
                 );
             }
 

@@ -20,6 +20,7 @@ class TaskPortion implements Runnable {
     private final int id = counter++;
     private static Random rand = new Random(47);
     private final CountDownLatch latch;
+
     TaskPortion(CountDownLatch latch) {
         this.latch = latch;
     }
@@ -59,7 +60,7 @@ class TaskPortion implements Runnable {
 class WaitingTask implements Runnable {
 
     private static int counter = 0;
-    private final  int id = counter++;
+    private final int id = counter++;
     private final CountDownLatch latch;
 
     WaitingTask(CountDownLatch latch) {
@@ -79,12 +80,12 @@ class WaitingTask implements Runnable {
      */
     @Override
     public void run() {
-         try {
-             latch.await();
-             print("Latch barrier passed for " + this);
-         } catch (InterruptedException e) {
-             print(this + " interrupted");
-         }
+        try {
+            latch.await();
+            print("Latch barrier passed for " + this);
+        } catch (InterruptedException e) {
+            print(this + " interrupted");
+        }
     }
 
     @Override

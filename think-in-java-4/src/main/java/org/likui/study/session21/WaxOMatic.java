@@ -15,6 +15,7 @@ import static net.mindview.util.Print.printnb;
  */
 class Car {
     private boolean waxOn = false;
+
     public synchronized void waxed() {
         waxOn = true;
         notifyAll();

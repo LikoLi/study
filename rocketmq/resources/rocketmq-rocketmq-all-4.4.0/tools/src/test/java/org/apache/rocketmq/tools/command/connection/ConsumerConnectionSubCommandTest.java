@@ -19,6 +19,7 @@ package org.apache.rocketmq.tools.command.connection;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
@@ -94,9 +95,9 @@ public class ConsumerConnectionSubCommandTest {
     public void testExecute() throws SubCommandException {
         ConsumerConnectionSubCommand cmd = new ConsumerConnectionSubCommand();
         Options options = ServerUtil.buildCommandlineOptions(new Options());
-        String[] subargs = new String[] {"-g default-consumer-group"};
+        String[] subargs = new String[]{"-g default-consumer-group"};
         final CommandLine commandLine =
-            ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options), new PosixParser());
+                ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options), new PosixParser());
         cmd.execute(commandLine, options, null);
     }
 }

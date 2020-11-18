@@ -15,7 +15,7 @@
     </Appenders>
     <Loggers>
         <logger name="org.liko" level="info" additivity="false">
-            <appender-ref ref="RandomAccessFile" />
+            <appender-ref ref="RandomAccessFile"/>
         </logger>
 
         <Root level="error" includeLocation="false">

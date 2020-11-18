@@ -16,7 +16,7 @@ public class Encoder {
         InputStream fis = new FileInputStream(srcFile);
         OutputStream fos = new FileOutputStream(tempFile);
         while ((dataOfFile = fis.read()) > -1) {
-            fos.write(dataOfFile^key);
+            fos.write(dataOfFile ^ key);
         }
         fis.close();
         fos.flush();

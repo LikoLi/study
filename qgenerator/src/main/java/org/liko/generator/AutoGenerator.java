@@ -73,7 +73,7 @@ public class AutoGenerator {
                     String annotationStr = properties.getProperty("annotations");
                     if (StringUtils.isNotBlank(annotationStr)) {
                         String[] annotations = annotationStr.split(",");
-                        for(String annotation : annotations) {
+                        for (String annotation : annotations) {
                             if (!annotation.matches("(\\w+.)+\\w+")) {
                                 throw new RuntimeException(String.format("user-defiend annotation %s error, format should be: xxx.xxx.....Annotation", annotation));
                             }
@@ -116,12 +116,6 @@ public class AutoGenerator {
                     }
 
                 }
-
-
-
-
-
-
 
 
             } catch (IOException e) {

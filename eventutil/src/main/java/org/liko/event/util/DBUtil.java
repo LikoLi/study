@@ -21,7 +21,7 @@ public class DBUtil {
     public static List<String> toSqlStringList(List<String> list) {
         int quantity = 500;
         List<String> sqlList = new ArrayList<>();
-        if (null != list && list.size()>0){
+        if (null != list && list.size() > 0) {
             int count = 0;
             while (count < list.size()) {
                 sqlList.add(toSqlString(list.subList(count, (count + quantity) > list.size() ? list.size() : count + quantity)));
@@ -30,6 +30,7 @@ public class DBUtil {
         }
         return sqlList;
     }
+
     public static String toSqlString(List<String> list) {
         if (null == list)
             return "('')";

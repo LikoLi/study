@@ -9,6 +9,7 @@ import java.util.List;
 public class HelloWorld {
     /**
      * 常规调用
+     *
      * @throws Exception
      */
     @Test
@@ -62,7 +63,7 @@ public class HelloWorld {
     @Test
     public void testFunction() throws Exception {
         ExpressRunner runner = new ExpressRunner();
-        runner.addFunctionOfClassMethod("取绝对值", Math.class.getName(), "abs", new String[] {"double"}, null);
+        runner.addFunctionOfClassMethod("取绝对值", Math.class.getName(), "abs", new String[]{"double"}, null);
         runner.addFunctionOfClassMethod("转换为大写", BeanExample.class.getName(), "upper", new String[]{"String"}, null);
         runner.addFunctionOfClassMethod("打印", BeanExample.class.getName(), "println", new String[]{"String"}, null);
         runner.addFunctionOfClassMethod("contains", BeanExample.class.getName(), "anyContains", new Class[]{String.class, String.class}, null);
@@ -141,7 +142,7 @@ public class HelloWorld {
         r = runner.execute(exp, context, null, false, false);
         System.out.println(r);
         exp = "abc = [1,2,3]; return abc[1] + abc[2];";
-        r = runner.execute(exp, context, null, false,false);
+        r = runner.execute(exp, context, null, false, false);
         System.out.println(r);
     }
 
@@ -162,7 +163,7 @@ class JoinOperator extends Operator {
         Object opdata1 = list[0];
         Object opdata2 = list[1];
         if (opdata1 instanceof java.util.List) {
-            ((java.util.List)opdata1).add(opdata2);
+            ((java.util.List) opdata1).add(opdata2);
             return opdata1;
         } else {
             java.util.List result = new ArrayList();

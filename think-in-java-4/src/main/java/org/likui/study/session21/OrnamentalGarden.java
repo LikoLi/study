@@ -19,6 +19,7 @@ import static net.mindview.util.Print.print;
 class Count {
     private int count = 0;
     private Random rand = new Random(47);
+
     public synchronized int increment() {
         int temp = count;
         if (rand.nextBoolean()) {
@@ -39,6 +40,7 @@ class Entrance implements Runnable {
     private int number = 0;
     private final int id;
     private static volatile boolean canceled = false;
+
     public static void cancel() {
         canceled = true;
     }
@@ -96,6 +98,7 @@ class Entrance implements Runnable {
         return sum;
     }
 }
+
 public class OrnamentalGarden {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();

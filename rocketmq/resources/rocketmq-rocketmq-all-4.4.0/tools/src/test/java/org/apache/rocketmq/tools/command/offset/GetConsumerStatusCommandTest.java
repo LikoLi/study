@@ -19,6 +19,7 @@ package org.apache.rocketmq.tools.command.offset;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
@@ -80,9 +81,9 @@ public class GetConsumerStatusCommandTest {
     public void testExecute() throws SubCommandException {
         GetConsumerStatusCommand cmd = new GetConsumerStatusCommand();
         Options options = ServerUtil.buildCommandlineOptions(new Options());
-        String[] subargs = new String[] {"-g default-group", "-t unit-test", "-i clientid"};
+        String[] subargs = new String[]{"-g default-group", "-t unit-test", "-i clientid"};
         final CommandLine commandLine =
-            ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options), new PosixParser());
+                ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options), new PosixParser());
         cmd.execute(commandLine, options, null);
     }
 }

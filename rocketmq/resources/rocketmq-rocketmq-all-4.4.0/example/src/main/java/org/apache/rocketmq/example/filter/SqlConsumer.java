@@ -33,8 +33,8 @@ public class SqlConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name_4");
         try {
             consumer.subscribe("TopicTest",
-                MessageSelector.bySql("(TAGS is not null and TAGS in ('TagA', 'TagB'))" +
-                    "and (a is not null and a between 0  3)"));
+                    MessageSelector.bySql("(TAGS is not null and TAGS in ('TagA', 'TagB'))" +
+                            "and (a is not null and a between 0  3)"));
         } catch (MQClientException e) {
             e.printStackTrace();
             return;
@@ -44,7 +44,7 @@ public class SqlConsumer {
 
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
-                ConsumeConcurrentlyContext context) {
+                                                            ConsumeConcurrentlyContext context) {
                 System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }

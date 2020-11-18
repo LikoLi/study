@@ -70,7 +70,7 @@ public class FileUtil {
         StringBuilder sb = new StringBuilder();
         for (Object key : properties.keySet()) {
             sb.append(key).append("=").append(properties.getProperty((String) key))
-                .append(lineSeperator);
+                    .append(lineSeperator);
         }
         return sb.toString();
     }

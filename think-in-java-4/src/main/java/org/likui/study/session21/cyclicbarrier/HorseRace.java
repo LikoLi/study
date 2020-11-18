@@ -20,9 +20,11 @@ class Horse implements Runnable {
     private int strides = 0;
     private static Random rand = new Random(47);
     private static CyclicBarrier barrier;
+
     public Horse(CyclicBarrier barrier) {
         Horse.barrier = barrier;
     }
+
     public synchronized int getStrides() {
         return strides;
     }

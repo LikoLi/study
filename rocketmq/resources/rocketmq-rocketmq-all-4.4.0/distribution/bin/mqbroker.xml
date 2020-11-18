@@ -41,5 +41,5 @@
 <-XX:MaxNewSize>512M</-XX:MaxNewSize>
 <-XX:PermSize>128M</-XX:PermSize>
 <-XX:MaxPermSize>128M</-XX:MaxPermSize>
-    </options>
-    </java>
+        </options>
+        </java>

@@ -18,7 +18,7 @@ public class UserController {
     @ResponseBody// 返回Json String
     public String save(String name, String password) {
         System.out.println("------------------------------------");
-        System.out.println("接收到的用户信息："+name);
+        System.out.println("接收到的用户信息：" + name);
 
         Test test = new Test("liko", 25);
         String testString = JSONObject.toJSONString(test);

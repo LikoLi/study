@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.rocketmq.acl.common.AclException;
 import org.apache.rocketmq.acl.common.Permission;
@@ -117,7 +118,7 @@ public class PlainPermissionLoaderTest {
         Assert.assertEquals(resourcePermMap.size(), 3);
 
         Assert.assertEquals(resourcePermMap.get(PlainAccessResource.getRetryTopic("groupA")).byteValue(), Permission.DENY);
-        Assert.assertEquals(resourcePermMap.get(PlainAccessResource.getRetryTopic("groupB")).byteValue(), Permission.PUB|Permission.SUB);
+        Assert.assertEquals(resourcePermMap.get(PlainAccessResource.getRetryTopic("groupB")).byteValue(), Permission.PUB | Permission.SUB);
         Assert.assertEquals(resourcePermMap.get(PlainAccessResource.getRetryTopic("groupC")).byteValue(), Permission.PUB);
 
         List<String> topics = new ArrayList<String>();
@@ -130,7 +131,7 @@ public class PlainPermissionLoaderTest {
         Assert.assertEquals(resourcePermMap.size(), 6);
 
         Assert.assertEquals(resourcePermMap.get("topicA").byteValue(), Permission.DENY);
-        Assert.assertEquals(resourcePermMap.get("topicB").byteValue(), Permission.PUB|Permission.SUB);
+        Assert.assertEquals(resourcePermMap.get("topicB").byteValue(), Permission.PUB | Permission.SUB);
         Assert.assertEquals(resourcePermMap.get("topicC").byteValue(), Permission.PUB);
     }
 
@@ -157,6 +158,7 @@ public class PlainPermissionLoaderTest {
         plainPermissionLoader.checkPerm(plainAccessResource, ANYPlainAccessResource);
 
     }
+
     @Test(expected = AclException.class)
     public void checkErrorPerm() {
 
@@ -164,6 +166,7 @@ public class PlainPermissionLoaderTest {
         plainAccessResource.addResourceAndPerm("topicF", Permission.SUB);
         plainPermissionLoader.checkPerm(plainAccessResource, SUBPlainAccessResource);
     }
+
     @Test(expected = AclException.class)
     public void accountNullTest() {
         plainAccessConfig.setAccessKey(null);
@@ -215,10 +218,10 @@ public class PlainPermissionLoaderTest {
 
 
     @Test
-    public void testWatch() throws IOException, IllegalAccessException ,InterruptedException{
+    public void testWatch() throws IOException, IllegalAccessException, InterruptedException {
         System.setProperty("rocketmq.home.dir", "src/test/resources");
         System.setProperty("rocketmq.acl.plain.file", "/conf/plain_acl-test.yml");
-        String fileName =System.getProperty("rocketmq.home.dir", "src/test/resources")+System.getProperty("rocketmq.acl.plain.file", "/conf/plain_acl.yml");
+        String fileName = System.getProperty("rocketmq.home.dir", "src/test/resources") + System.getProperty("rocketmq.acl.plain.file", "/conf/plain_acl.yml");
         File transport = new File(fileName);
         transport.delete();
         transport.createNewFile();

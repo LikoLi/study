@@ -1,4 +1,5 @@
 package org.liko.generator;
+
 import java.io.Serializable;
 
 class Token implements Serializable {
@@ -19,7 +20,7 @@ class Token implements Serializable {
     }
 
     public static final Token newToken(int ofKind) {
-        switch(ofKind) {
+        switch (ofKind) {
             default:
                 return new Token();
         }

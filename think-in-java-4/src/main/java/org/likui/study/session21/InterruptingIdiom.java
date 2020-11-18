@@ -18,7 +18,7 @@ class NeedsCleanup {
         this.id = id;
         print("NeedsCleanup " + id);
     }
-    
+
     public void cleanup() {
         print("Cleaning up " + id);
     }
@@ -66,13 +66,14 @@ class Blocked3 implements Runnable {
         }
     }
 }
+
 public class InterruptingIdiom {
     public static void main(String[] args) throws InterruptedException {
         if (args.length != 1) {
             print("usage: java InterruptingIdiom delay-in-ms");
             System.exit(0);
         }
-        Thread t =new Thread(new Blocked3());
+        Thread t = new Thread(new Blocked3());
         t.start();
         TimeUnit.MILLISECONDS.sleep(new Integer(args[0]));
         t.interrupt();

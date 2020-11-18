@@ -17,6 +17,7 @@ public class PhilosopherLeft2Right implements Runnable {
     private final int id;
     private final int ponderFactor;
     private Random random = new Random(47);
+
     private void pause() throws InterruptedException {
         if (ponderFactor == 0) {
             return;

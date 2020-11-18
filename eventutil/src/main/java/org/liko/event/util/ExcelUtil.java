@@ -22,7 +22,6 @@ import java.util.Map;
 
 /**
  * Created by Liko on 2018/1/31
- *
  */
 public class ExcelUtil {
     private static final Logger logger = LoggerFactory.getLogger(ExcelUtil.class);
@@ -42,6 +41,7 @@ public class ExcelUtil {
         workbook = readFile(PATH);
         mapping = getSheetAndClassMapping();
     }
+
     public ExcelUtil(String path) {
         workbook = readFile(path);
         mapping = getSheetAndClassMapping();
@@ -49,6 +49,7 @@ public class ExcelUtil {
 
     /**
      * 读取Excel
+     *
      * @param path Excel路径
      * @return HSSFWorkbook
      */
@@ -63,6 +64,7 @@ public class ExcelUtil {
 
     /**
      * 读取sheet name和class name的映射关系
+     *
      * @return Sheet name 和class name的映射关系
      */
     private Map<String, String> getSheetAndClassMapping() {
@@ -76,8 +78,9 @@ public class ExcelUtil {
 
     /**
      * 将sheet转成Map<String, String>
+     *
      * @param sheet
-     * @return Map<String, String>
+     * @return Map<String   ,       String>
      */
     private Map<String, String> convertSheet2Map(HSSFSheet sheet) {
         Map<String, String> result = new HashMap<>();
@@ -126,7 +129,7 @@ public class ExcelUtil {
             field.set(instance, cellValue);
         } else if (type.getName().equals(Integer.class.getName()) || type.getName().equals(int.class.getName())) {
             cell.setCellType(CellType.NUMERIC);
-            field.set(instance, ((Double)cell.getNumericCellValue()).intValue());
+            field.set(instance, ((Double) cell.getNumericCellValue()).intValue());
         } else if (type.getName().equals(Double.class.getName()) || type.getName().equals(double.class.getName())) {
             double cellValue;
             try {
@@ -140,7 +143,7 @@ public class ExcelUtil {
             field.set(instance, cellValue);
         } else if (type.getName().equals(Long.class.getName()) || type.getName().equals(long.class.getName())) {
             cell.setCellType(CellType.NUMERIC);
-            field.set(instance, ((Double)cell.getNumericCellValue()).longValue());
+            field.set(instance, ((Double) cell.getNumericCellValue()).longValue());
         } else if (type.getName().equals(List.class.getName())) {
             cell.setCellType(CellType.STRING);
             String cellValue = cell.getStringCellValue();
@@ -190,7 +193,7 @@ public class ExcelUtil {
     }
 
     private Field getField(Class clazz, String fieldName) throws NoSuchFieldException {
-        for(; clazz != Object.class ; clazz = clazz.getSuperclass()) {
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
             try {
                 Field field = clazz.getDeclaredField(fieldName);
                 return field;

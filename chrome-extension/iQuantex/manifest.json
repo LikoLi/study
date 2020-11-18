@@ -1,20 +1,20 @@
-{  
-    "manifest_version": 2,  
-    "name": "iQuantex",  
-    "version": "1.0",  
-    "description": "宽拓快捷方式",  
-    "browser_action": {  
-        "default_popup": "view/popup.html"  
-    },
-    "icons": {
-    	"16": "icons/icons_16.ico",
-    	"48": "icons/icons_16.ico",
-    	"64": "icons/icons_16.ico",
-    	"128": "icons/icons_16.ico"
-    },
-    "author": "liko", 
-    "permissions": [  
-        "tabs"  
-    ],
-    "options_page": "view/options.html"
+{
+  "manifest_version": 2,
+  "name": "iQuantex",
+  "version": "1.0",
+  "description": "宽拓快捷方式",
+  "browser_action": {
+    "default_popup": "view/popup.html"
+  },
+  "icons": {
+    "16": "icons/icons_16.ico",
+    "48": "icons/icons_16.ico",
+    "64": "icons/icons_16.ico",
+    "128": "icons/icons_16.ico"
+  },
+  "author": "liko",
+  "permissions": [
+    "tabs"
+  ],
+  "options_page": "view/options.html"
 }  

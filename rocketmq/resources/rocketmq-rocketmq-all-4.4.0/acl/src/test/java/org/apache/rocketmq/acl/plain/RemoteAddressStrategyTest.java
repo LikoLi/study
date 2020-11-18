@@ -29,7 +29,7 @@ public class RemoteAddressStrategyTest {
         PlainAccessResource plainAccessResource = new PlainAccessResource();
         remoteAddressStrategyFactory.getRemoteAddressStrategy(plainAccessResource);
         Assert.assertEquals(remoteAddressStrategyFactory.getRemoteAddressStrategy(plainAccessResource).getClass(),
-            RemoteAddressStrategyFactory.BlankRemoteAddressStrategy.class);
+                RemoteAddressStrategyFactory.BlankRemoteAddressStrategy.class);
     }
 
     @Test
@@ -168,8 +168,8 @@ public class RemoteAddressStrategyTest {
     }
 
     private void rangeNetaddressStrategyTest(RemoteAddressStrategy remoteAddressStrategy, String head, int start,
-        int end,
-        boolean isFalse) {
+                                             int end,
+                                             boolean isFalse) {
         PlainAccessResource plainAccessResource = new PlainAccessResource();
         for (int i = -10; i < 300; i++) {
             plainAccessResource.setWhiteRemoteAddress(head + i);
@@ -184,7 +184,7 @@ public class RemoteAddressStrategyTest {
     }
 
     private void rangeNetaddressStrategyThirdlyTest(RemoteAddressStrategy remoteAddressStrategy, String head, int start,
-        int end) {
+                                                    int end) {
         String newHead;
         for (int i = -10; i < 300; i++) {
             newHead = head + i;

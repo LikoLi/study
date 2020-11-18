@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @SpringBootApplication
 @ServletComponentScan
 public class PigeonRaceApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(PigeonRaceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PigeonRaceApplication.class, args);
+    }
 }

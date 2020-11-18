@@ -18,6 +18,7 @@ package org.apache.rocketmq.acl.plain;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.apache.rocketmq.acl.common.AclException;
 import org.apache.rocketmq.acl.common.AclUtils;
 import org.apache.rocketmq.acl.common.Permission;
@@ -43,13 +45,13 @@ public class PlainPermissionLoader {
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
     private String fileHome = System.getProperty(MixAll.ROCKETMQ_HOME_PROPERTY,
-        System.getenv(MixAll.ROCKETMQ_HOME_ENV));
+            System.getenv(MixAll.ROCKETMQ_HOME_ENV));
 
     private String fileName = System.getProperty("rocketmq.acl.plain.file", DEFAULT_PLAIN_ACL_FILE);
 
-    private  Map<String/** AccessKey **/, PlainAccessResource> plainAccessResourceMap = new HashMap<>();
+    private Map<String/** AccessKey **/, PlainAccessResource> plainAccessResourceMap = new HashMap<>();
 
-    private  List<RemoteAddressStrategy> globalWhiteRemoteAddressStrategy = new ArrayList<>();
+    private List<RemoteAddressStrategy> globalWhiteRemoteAddressStrategy = new ArrayList<>();
 
     private RemoteAddressStrategyFactory remoteAddressStrategyFactory = new RemoteAddressStrategyFactory();
 
@@ -66,7 +68,7 @@ public class PlainPermissionLoader {
         List<RemoteAddressStrategy> globalWhiteRemoteAddressStrategy = new ArrayList<>();
 
         JSONObject plainAclConfData = AclUtils.getYamlDataObject(fileHome + File.separator + fileName,
-            JSONObject.class);
+                JSONObject.class);
 
         if (plainAclConfData == null || plainAclConfData.isEmpty()) {
             throw new AclException(String.format("%s file  is not data", fileHome + File.separator + fileName));
@@ -85,7 +87,7 @@ public class PlainPermissionLoader {
             List<PlainAccessConfig> plainAccessConfigList = accounts.toJavaList(PlainAccessConfig.class);
             for (PlainAccessConfig plainAccessConfig : plainAccessConfigList) {
                 PlainAccessResource plainAccessResource = buildPlainAccessResource(plainAccessConfig);
-                plainAccessResourceMap.put(plainAccessResource.getAccessKey(),plainAccessResource);
+                plainAccessResourceMap.put(plainAccessResource.getAccessKey(), plainAccessResource);
             }
         }
 
@@ -96,7 +98,7 @@ public class PlainPermissionLoader {
     private void watch() {
         try {
             String watchFilePath = fileHome + fileName;
-            FileWatchService fileWatchService = new FileWatchService(new String[] {watchFilePath}, new FileWatchService.Listener() {
+            FileWatchService fileWatchService = new FileWatchService(new String[]{watchFilePath}, new FileWatchService.Listener() {
                 @Override
                 public void onChanged(String path) {
                     log.info("The plain acl yml changed, reload the context");
@@ -131,7 +133,7 @@ public class PlainPermissionLoader {
             if (!ownedPermMap.containsKey(resource)) {
                 // Check the default perm
                 byte ownedPerm = isGroup ? needCheckedAccess.getDefaultGroupPerm() :
-                    needCheckedAccess.getDefaultTopicPerm();
+                        needCheckedAccess.getDefaultTopicPerm();
                 if (!Permission.checkPermission(neededPerm, ownedPerm)) {
                     throw new AclException(String.format("No default permission for %s", PlainAccessResource.printStr(resource, isGroup)));
                 }
@@ -150,11 +152,11 @@ public class PlainPermissionLoader {
 
     public PlainAccessResource buildPlainAccessResource(PlainAccessConfig plainAccessConfig) throws AclException {
         if (plainAccessConfig.getAccessKey() == null
-            || plainAccessConfig.getSecretKey() == null
-            || plainAccessConfig.getAccessKey().length() <= 6
-            || plainAccessConfig.getSecretKey().length() <= 6) {
+                || plainAccessConfig.getSecretKey() == null
+                || plainAccessConfig.getAccessKey().length() <= 6
+                || plainAccessConfig.getSecretKey().length() <= 6) {
             throw new AclException(String.format(
-                "The accessKey=%s and secretKey=%s cannot be null and length should longer than 6",
+                    "The accessKey=%s and secretKey=%s cannot be null and length should longer than 6",
                     plainAccessConfig.getAccessKey(), plainAccessConfig.getSecretKey()));
         }
         PlainAccessResource plainAccessResource = new PlainAccessResource();

@@ -8,12 +8,10 @@ import static org.junit.Assert.*;
 
 /**
  * Powermockito.mock() : 方法根据class创建一个对应的mock对象, Powermock的创建方式可不像Easymock等使用proxy的方式创建, 他是会在你运行的过程中动态的修改class字节码文件的形式来创建
- *
+ * <p>
  * Do...When...Then: 当我们想给一个mock的对象进行某种行为的预测时, 都会使用 do..when..then这样的语法
- *
+ * <p>
  * Verify: 当我们测试一个void方法的时候, 根本没有办法去验证一个mock对象所执行后的结果, 因此唯一的方法就是检查方法是否被调用
- *
- *
  */
 
 public class EmployeeServiceTest {

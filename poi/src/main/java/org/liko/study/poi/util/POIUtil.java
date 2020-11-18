@@ -24,7 +24,7 @@ import java.util.Date;
  */
 public class POIUtil {
 
-    public static String convertExceltoHtml(String path) throws IOException,ParserConfigurationException, TransformerException,InvalidFormatException {
+    public static String convertExceltoHtml(String path) throws IOException, ParserConfigurationException, TransformerException, InvalidFormatException {
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));
         StringBuffer content = new StringBuffer();
         HSSFWorkbook workbook = new HSSFWorkbook(bis);

@@ -41,6 +41,7 @@ class SleepBlocked implements Runnable {
 
 class IOBlocked implements Runnable {
     private InputStream is;
+
     public IOBlocked(InputStream is) {
         this.is = is;
     }
@@ -110,6 +111,7 @@ class SynchronizedBlocked implements Runnable {
 
 public class Interrupting {
     private static ExecutorService exec = Executors.newCachedThreadPool();
+
     static void test(Runnable r) throws InterruptedException {
         Future<?> f = exec.submit(r);
         TimeUnit.MILLISECONDS.sleep(100);

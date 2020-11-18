@@ -7,15 +7,13 @@ import java.util.stream.Collectors;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
+public class App {
     public static final SimpleDateFormat BONDEXECUTION_TRADE_TIME_FOMATTER = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
 
-    public static void main( String[] args ) throws ParseException {
+    public static void main(String[] args) throws ParseException {
 //        System.out.println( "Hello World!" );
 //        long current = System.currentTimeMillis();
 //        System.out.println(current);
@@ -77,6 +75,7 @@ public class App
 
     /**
      * 将时间格式化为时间戳
+     *
      * @param formatter
      * @param dateStr
      * @return

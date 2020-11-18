@@ -2,8 +2,10 @@ package powermock.session3;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import static org.powermock.api.mockito.PowerMockito.*;
 import static org.junit.Assert.*;
+
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 

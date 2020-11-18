@@ -19,6 +19,7 @@ public interface MdsService {
 
     /**
      * Get MDS
+     *
      * @param symbol
      * @param timestamp
      * @param select

@@ -91,7 +91,7 @@ public class RocketmqLog4jAppender extends AppenderSkeleton {
         } catch (Exception e) {
             String msg = new String(data);
             errorHandler.error("Could not send message in RocketmqLog4jAppender [" + name + "].Message is :" + msg, e,
-                ErrorCode.GENERIC_FAILURE);
+                    ErrorCode.GENERIC_FAILURE);
         }
     }
 

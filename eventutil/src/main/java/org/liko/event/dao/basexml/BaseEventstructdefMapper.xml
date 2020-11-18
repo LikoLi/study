@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.liko.event.dao.java.EventstructdefMapper">
-  <resultMap id="BaseResultMap" type="org.liko.event.model.Eventstructdef">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="groupId" jdbcType="INTEGER" property="groupid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="org.liko.event.model.Eventstructdef">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="groupId" jdbcType="INTEGER" property="groupid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+    </resultMap>
 
-  <!--<select id="selectByNames" parameterType="java.util.Set" resultMap="BaseResultMap">
-    SELECT *
-    FROM EVENTSTRUCTDEF ESD
-    WHERE ESD.NAME
-    IN
-    <foreach collection="set" index="index" item="item" open="(" separator="," close=")">
-      #{item}
-    </foreach>
-  </select>-->
+    <!--<select id="selectByNames" parameterType="java.util.Set" resultMap="BaseResultMap">
+      SELECT *
+      FROM EVENTSTRUCTDEF ESD
+      WHERE ESD.NAME
+      IN
+      <foreach collection="set" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </select>-->
 </mapper>

@@ -1,7 +1,7 @@
 notifications:
   email:
     recipients:
-      - dev@rocketmq.apache.org
+    - dev@rocketmq.apache.org
   on_success: change
   on_failure: always
 
@@ -16,15 +16,15 @@ matrix:
     env: CUSTOM_JDK="oraclejdk8"
 
 before_install:
-  - echo 'MAVEN_OPTS="$MAVEN_OPTS -Xmx1024m -XX:MaxPermSize=512m -XX:+BytecodeVerificationLocal"' >> ~/.mavenrc
-  - cat ~/.mavenrc
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then jdk_switcher use "$CUSTOM_JDK"; fi
+- echo 'MAVEN_OPTS="$MAVEN_OPTS -Xmx1024m -XX:MaxPermSize=512m -XX:+BytecodeVerificationLocal"' >> ~/.mavenrc
+- cat ~/.mavenrc
+- if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then jdk_switcher use "$CUSTOM_JDK"; fi
 
 script:
-  - travis_retry mvn -B clean apache-rat:check
-  - travis_retry mvn -B package jacoco:report coveralls:report
+- travis_retry mvn -B clean apache-rat:check
+- travis_retry mvn -B package jacoco:report coveralls:report
 
 after_success:
-  - mvn clean install -Pit-test
-  - mvn sonar:sonar -Psonar-apache
+- mvn clean install -Pit-test
+- mvn sonar:sonar -Psonar-apache

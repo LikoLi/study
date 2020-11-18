@@ -15,7 +15,7 @@ public class ThreadPollExecutor {
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
         ExecutorService singleThreadPool = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
-        singleThreadPool.execute(()-> System.out.println(Thread.currentThread().getName()));
+        singleThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
         singleThreadPool.shutdown();
     }
 }

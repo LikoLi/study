@@ -19,6 +19,7 @@ package org.apache.rocketmq.acl.plain;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
 import org.apache.rocketmq.acl.AccessResource;
 import org.apache.rocketmq.acl.AccessValidator;
 import org.apache.rocketmq.acl.common.AclException;
@@ -87,20 +88,20 @@ public class PlainAccessValidator implements AccessValidator {
                     break;
                 case RequestCode.UNREGISTER_CLIENT:
                     final UnregisterClientRequestHeader unregisterClientRequestHeader =
-                        (UnregisterClientRequestHeader) request
-                            .decodeCommandCustomHeader(UnregisterClientRequestHeader.class);
+                            (UnregisterClientRequestHeader) request
+                                    .decodeCommandCustomHeader(UnregisterClientRequestHeader.class);
                     accessResource.addResourceAndPerm(getRetryTopic(unregisterClientRequestHeader.getConsumerGroup()), Permission.SUB);
                     break;
                 case RequestCode.GET_CONSUMER_LIST_BY_GROUP:
                     final GetConsumerListByGroupRequestHeader getConsumerListByGroupRequestHeader =
-                        (GetConsumerListByGroupRequestHeader) request
-                            .decodeCommandCustomHeader(GetConsumerListByGroupRequestHeader.class);
+                            (GetConsumerListByGroupRequestHeader) request
+                                    .decodeCommandCustomHeader(GetConsumerListByGroupRequestHeader.class);
                     accessResource.addResourceAndPerm(getRetryTopic(getConsumerListByGroupRequestHeader.getConsumerGroup()), Permission.SUB);
                     break;
                 case RequestCode.UPDATE_CONSUMER_OFFSET:
                     final UpdateConsumerOffsetRequestHeader updateConsumerOffsetRequestHeader =
-                        (UpdateConsumerOffsetRequestHeader) request
-                            .decodeCommandCustomHeader(UpdateConsumerOffsetRequestHeader.class);
+                            (UpdateConsumerOffsetRequestHeader) request
+                                    .decodeCommandCustomHeader(UpdateConsumerOffsetRequestHeader.class);
                     accessResource.addResourceAndPerm(getRetryTopic(updateConsumerOffsetRequestHeader.getConsumerGroup()), Permission.SUB);
                     accessResource.addResourceAndPerm(updateConsumerOffsetRequestHeader.getTopic(), Permission.SUB);
                     break;

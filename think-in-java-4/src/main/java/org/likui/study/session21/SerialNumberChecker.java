@@ -14,6 +14,7 @@ class CircularSet {
     private int[] array;
     private int len;
     private int index = 0;
+
     public CircularSet(int size) {
         array = new int[size];
         len = size;
@@ -43,7 +44,7 @@ public class SerialNumberChecker {
     private static CircularSet serials = new CircularSet(1000);
     private static ExecutorService exec = Executors.newCachedThreadPool();
 
-    static  class SerialChecker implements Runnable {
+    static class SerialChecker implements Runnable {
 
         /**
          * When an object implementing interface <code>Runnable</code> is used

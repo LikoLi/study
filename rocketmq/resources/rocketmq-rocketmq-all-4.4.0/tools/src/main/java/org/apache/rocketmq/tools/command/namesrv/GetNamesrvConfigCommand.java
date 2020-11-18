@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.rocketmq.remoting.RPCHook;
@@ -47,7 +48,7 @@ public class GetNamesrvConfigCommand implements SubCommand {
 
     @Override
     public void execute(final CommandLine commandLine, final Options options,
-        final RPCHook rpcHook) throws SubCommandException {
+                        final RPCHook rpcHook) throws SubCommandException {
         DefaultMQAdminExt defaultMQAdminExt = new DefaultMQAdminExt(rpcHook);
         defaultMQAdminExt.setInstanceName(Long.toString(System.currentTimeMillis()));
         try {
@@ -68,7 +69,7 @@ public class GetNamesrvConfigCommand implements SubCommand {
 
             for (String server : nameServerConfigs.keySet()) {
                 System.out.printf("============%s============\n",
-                    server);
+                        server);
                 for (Object key : nameServerConfigs.get(server).keySet()) {
                     System.out.printf("%-50s=  %s\n", key, nameServerConfigs.get(server).get(key));
                 }

@@ -144,8 +144,8 @@ public class BloomFilter {
     public void hashTo(BloomFilterData filterData, BitsArray bits) {
         if (!isValid(filterData)) {
             throw new IllegalArgumentException(
-                String.format("Bloom filter data may not belong to this filter! %s, %s",
-                    filterData, this.toString())
+                    String.format("Bloom filter data may not belong to this filter! %s, %s",
+                            filterData, this.toString())
             );
         }
         hashTo(filterData.getBitPos(), bits);
@@ -182,8 +182,8 @@ public class BloomFilter {
     public boolean isHit(BloomFilterData filterData, BitsArray bits) {
         if (!isValid(filterData)) {
             throw new IllegalArgumentException(
-                String.format("Bloom filter data may not belong to this filter! %s, %s",
-                    filterData, this.toString())
+                    String.format("Bloom filter data may not belong to this filter! %s, %s",
+                            filterData, this.toString())
             );
         }
         return isHit(filterData.getBitPos(), bits);
@@ -211,7 +211,7 @@ public class BloomFilter {
     protected void check(BitsArray bits) {
         if (bits.bitLength() != this.m) {
             throw new IllegalArgumentException(
-                String.format("Length(%d) of bits in BitsArray is not equal to %d!", bits.bitLength(), this.m)
+                    String.format("Length(%d) of bits in BitsArray is not equal to %d!", bits.bitLength(), this.m)
             );
         }
     }
@@ -225,9 +225,9 @@ public class BloomFilter {
      */
     public boolean isValid(BloomFilterData filterData) {
         if (filterData == null
-            || filterData.getBitNum() != this.m
-            || filterData.getBitPos() == null
-            || filterData.getBitPos().length != this.k) {
+                || filterData.getBitNum() != this.m
+                || filterData.getBitPos() == null
+                || filterData.getBitPos().length != this.k) {
             return false;
         }
 

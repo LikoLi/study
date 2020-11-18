@@ -54,7 +54,6 @@ public class MyPowerMockTest {
 //
 //        Assert.assertTrue(powerMock.callFinalMethod(dependency));
 //    }
-
     @Test
     public void testGetPayloadName() throws Exception {
         FileItem item = PowerMockito.mock(FileItem.class);

@@ -19,6 +19,7 @@ package org.apache.rocketmq.acl.common;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.acl.plain.PlainAccessResource;
 import org.apache.rocketmq.common.protocol.RequestCode;
@@ -76,7 +77,7 @@ public class Permission {
     }
 
     public static void parseResourcePerms(PlainAccessResource plainAccessResource, Boolean isTopic,
-        List<String> resources) {
+                                          List<String> resources) {
         if (resources == null || resources.isEmpty()) {
             return;
         }

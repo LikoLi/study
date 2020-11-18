@@ -46,6 +46,7 @@ public class EventUtil {
 
     /**
      * 根据Excel 插入/更新事件定义
+     *
      * @throws IllegalAccessException
      * @throws InvocationTargetException
      * @throws InstantiationException
@@ -144,6 +145,7 @@ public class EventUtil {
 
     /**
      * 根据事件id生成excel
+     *
      * @param eventId
      * @throws InvocationTargetException
      * @throws IllegalAccessException
@@ -207,7 +209,7 @@ public class EventUtil {
     private List<List<String>> obj2List(Object obj) throws InvocationTargetException, IllegalAccessException {
         List<List<String>> result = new ArrayList<>();
         if (obj instanceof EventstructdefExt) {
-            obj = (EventstructdefExt)obj;
+            obj = (EventstructdefExt) obj;
             Field[] declaredFields = obj.getClass().getDeclaredFields();
             List<String> title = new ArrayList<>();
             List<String> values = new ArrayList<>();
@@ -252,9 +254,9 @@ public class EventUtil {
         for (Method method : declaredMethods) {
             String methodName = method.getName().toLowerCase();
             String fieldName = field.getName().toLowerCase();
-            if (methodName.equals("get"+ fieldName)) {
+            if (methodName.equals("get" + fieldName)) {
                 result = method;
-            } else if (methodName.equals("is"+ fieldName)) {
+            } else if (methodName.equals("is" + fieldName)) {
                 result = method;
             }
         }

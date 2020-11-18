@@ -32,7 +32,7 @@ public class DeadlockingDiningPhilosophers {
         }
         for (int i = 0; i < size; i++) {
 //            if (i != size -1) {
-                exec.execute(new Philosopher(sticks[i], sticks[(i + 1) % size], i, ponder));
+            exec.execute(new Philosopher(sticks[i], sticks[(i + 1) % size], i, ponder));
 //            } else {
 //                exec.execute(new PhilosopherLeft2Right(sticks[i], sticks[(i + 1) % size], i, ponder));
 //            }

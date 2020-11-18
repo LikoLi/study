@@ -153,7 +153,7 @@ public class Action {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof Action) && (this.id == ((Action)o).getId());
+        return (o instanceof Action) && (this.id == ((Action) o).getId());
     }
 
     @Override

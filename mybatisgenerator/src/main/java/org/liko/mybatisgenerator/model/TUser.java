@@ -1,6 +1,7 @@
 package org.liko.mybatisgenerator.model;
 
 import javax.persistence.*;
+
 import org.apache.ibatis.type.JdbcType;
 import tk.mybatis.mapper.annotation.ColumnType;
 

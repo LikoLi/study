@@ -46,8 +46,8 @@ public class SqlProducer {
                     tag = "TagC";
                 }
                 Message msg = new Message("TopicTest",
-                    tag,
-                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
+                        tag,
+                        ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
                 );
                 msg.putUserProperty("a", String.valueOf(i));
 
