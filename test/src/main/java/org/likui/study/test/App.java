@@ -3,7 +3,6 @@ package org.likui.study.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -49,10 +48,10 @@ public class App {
 //            return (int) a > 2;
 //        }).collect(Collectors.toList());
 //        System.out.println(collect);
-        Map<String, Integer> map = new HashMap<>();
+//        Map<String, Integer> map = new HashMap<>();
 //        list.stream().forEach(a -> map.put((String) a, (Integer) a));
 //        App::key(123);
-        list.stream().forEach(App::key);
+//        list.stream().forEach(App::key);
 
         System.out.println("123" + null);
 
