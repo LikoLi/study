@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS auth_server;
+CREATE DATABASE IF NOT EXISTS portal_server;
+

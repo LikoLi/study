@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.portal_server.server.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.portal_server.server.name | quote }}
+spec:
+  type: {{ .Values.portal_server.server.service.type }}
+  ports:
+    - name: {{ .Values.portal_server.server.name | quote }}
+      port: 80
+      targetPort: {{ .Values.portal_server.server.port }}
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "portal.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.name: {{ .Values.portal_server.server.name | quote }}

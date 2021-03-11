@@ -1,0 +1,27 @@
+{{- if .Values.portal_server.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "portal.name" . }}
+  labels:
+    {{- include "portal.labels" . | nindent 4 }}
+  {{- with .Values.portal_server.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.global.portal_server.ssl }}
+  tls:
+    - hosts:
+      - {{ .Values.global.portal_server.domain_head }}{{ .Values.global.domain }}
+        secretName: {{ .Values.portal_server.ingress.tls.secretName }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.global.portal_server.domain_head }}{{ .Values.global.domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ include "portal.name" . }}
+              servicePort: 80
+{{- end }}

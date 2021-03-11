@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.oauth2_client.server.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.oauth2_client.server.name | quote }}
+spec:
+  replicas: {{ .Values.oauth2_client.server.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "portal.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.name: {{ .Values.oauth2_client.server.name | quote }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "portal.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.name: {{ .Values.oauth2_client.server.name | quote }}
+        app: {{ .Values.oauth2_client.server.name | quote }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Values.oauth2_client.server.name | quote }}
+          image: "{{ .Values.oauth2_client.server.image }}:{{ include "portal.tag" . }}"
+          imagePullPolicy: {{ .Values.oauth2_client.server.imagePullPolicy }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.oauth2_client.server.port }}
+              protocol: TCP
+          env:
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: commit.id
+              value: {{ .Values.global.commit_id | quote }}
+            - name: SERVER.PORT
+              value: {{ .Values.oauth2_client.server.port | quote }}
+            - name: SPRING.APPLICATION.NAME
+              value: {{ .Values.oauth2_client.server.name | quote }}
+            - name: RESOURCE.HOST
+              value: "http://{{ .Values.global.gateway.domain_head }}{{ .Values.global.domain}}"
+            - name: AUTH.HOST
+              value: "http://{{ .Values.global.sso.domain_head }}{{ .Values.global.domain }}"
+          resources:
+            {{- toYaml .Values.oauth2_client.server.resources | nindent 12 }}
+      {{- with .Values.oauth2_client.server.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.oauth2_client.server.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.oauth2_client.server.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

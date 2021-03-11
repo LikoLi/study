@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.oauth2_client.server.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.oauth2_client.server.name | quote }}
+spec:
+  type: {{ .Values.oauth2_client.server.service.type }}
+  ports:
+    - name: {{ .Values.oauth2_client.server.name | quote }}
+      port: 80
+      targetPort: {{ .Values.oauth2_client.server.port }}
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "portal.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.name: {{ .Values.oauth2_client.server.name | quote }}

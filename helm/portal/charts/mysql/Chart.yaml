@@ -1,0 +1,19 @@
+apiVersion: v1
+appVersion: 5.7.25
+description: Chart to create a Highly available MySQL cluster
+engine: gotpl
+home: https://mysql.com
+icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+keywords:
+- mysql
+- database
+- sql
+- cluster
+- high availablity
+maintainers:
+- email: bowen.li@iquantex.com
+  name: Bowen
+name: mysql
+sources:
+- https://gitlab.iquantex.com/helm/mysql.git
+version: 1.0.3

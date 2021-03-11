@@ -1,0 +1,35 @@
+labels:
+  io.cattle.role: project
+categories:
+  - Application
+questions:
+  - variable: portal_gateway.ingress.enabled
+    default: true
+    description: "网关是否使用Ingress"
+    label: Ingress
+    type: boolean
+    group: "网关配置"
+  - variable: global.gateway.ssl
+    default: false
+    description: "网关是否使用https"
+    label: SSL
+    type: boolean
+    group: "网关配置"
+  - variable: global.domain
+    default: ".test.bj.iquantex.com"
+    description: "域名后缀： 默认： .test.bj.iquantex.com"
+    type: string
+    label: Domain
+    group: "域名配置"
+  - variable: sso_server.ingress.enabled
+    default: true
+    description: "认证服务是否使用Ingress"
+    label: Ingress
+    type: boolean
+    group: "认证服务器配置"
+  - variable: global.sso.ssl
+    default: false
+    description: "认证服务是否使用https"
+    label: SSL
+    type: boolean
+    group: "认证服务器配置"

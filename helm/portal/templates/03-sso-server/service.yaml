@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.sso_server.server.name | quote }}
+  labels:
+{{ include "sso.labels" . | indent 4 }}
+    app.name: {{ .Values.sso_server.server.name | quote }}
+spec:
+  type: {{ .Values.sso_server.server.service.type }}
+  ports:
+    - name: {{ .Values.sso_server.server.name | quote }}
+      port: 80
+      targetPort: {{ .Values.sso_server.server.port }}
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "sso.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.name: {{ .Values.sso_server.server.name | quote }}

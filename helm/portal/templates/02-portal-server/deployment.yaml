@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.portal_server.server.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.portal_server.server.name | quote }}
+spec:
+  replicas: {{ .Values.portal_server.server.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "portal.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.name: {{ .Values.portal_server.server.name | quote }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "portal.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.name: {{ .Values.portal_server.server.name | quote }}
+        app: {{ .Values.portal_server.server.name | quote }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Values.portal_server.server.name | quote }}
+          image: "{{ .Values.portal_server.server.image }}:{{ include "portal.tag" . }}"
+          imagePullPolicy: {{ .Values.portal_server.server.imagePullPolicy }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.portal_server.server.port }}
+              protocol: TCP
+          env:
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: commit.id
+              value: {{ .Values.global.commit_id | quote }}
+            - name: SERVER.PORT
+              value: {{ .Values.portal_server.server.port | quote }}
+            - name: SPRING_APPLICATION_NAME
+              value: {{ .Values.portal_server.server.name | quote }}
+            - name: SPRING.DATASOURCE.URL
+              value: {{ .Values.global.datasource.portal_url }}
+            - name: SPRING.DATASOURCE.DRIVER-CLASS-NAME
+              value: {{ .Values.global.datasource.driver_class_name }}
+            - name: SPRING.DATASOURCE.USERNAME
+              value: {{ .Values.global.datasource.username }}
+            - name: SPRING.DATASOURCE.PASSWORD
+              value: {{ .Values.global.datasource.password }}
+            - name: SPRING.FLYWAY.ENABLED
+              value: {{ .Values.global.datasource.flyway | quote}}
+          resources:
+            {{- toYaml .Values.portal_server.server.resources | nindent 12 }}
+      {{- with .Values.portal_server.server.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.portal_server.server.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.portal_server.server.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

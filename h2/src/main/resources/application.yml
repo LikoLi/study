@@ -1,0 +1,24 @@
+spring:
+  # h2配置
+  jpa:
+    show-sql: true # 启用SQL语句的日志记录
+    hibernate:
+      ddl-auto: update # 设置ddl模式
+  # 数据库连接设置
+  datasource:
+    url: jdbc:h2:mem:h2test
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    # 数据初始化设置
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+    platform: h2 # 表明使用的数据库平台是h2
+  # h2 web console设置
+  h2:
+    console:
+      path: /h2
+      enabled: true
+      settings:
+        web-allow-others: true
+

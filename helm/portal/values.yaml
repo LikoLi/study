@@ -1,0 +1,153 @@
+# Default values for phoenix-platform.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+nameOverride: ""
+fullnameOverride: ""
+
+## 依赖服务配置
+## 全局配置
+global:
+  versionOverride: ""
+  commit_id: default_commit_id
+  datasource:
+    sso_url: jdbc:mysql://mysql:3306/auth_server?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    portal_url: jdbc:mysql://mysql:3306/portal_server?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    driver_class_name: com.mysql.jdbc.Driver
+    username: root
+    password: huang
+    flyway: true
+  domain: ".test.bj.iquantex.com"
+  sso:
+    domain_head: sso
+    ssl: false
+    account_enabled: true
+  gateway:
+    signing_key: password
+    client_id: qportal
+    client_secret: 6d9d1b5fd6ca5539
+    cicc_auth_host: http://10.110.48.66:8080
+    domain_head: portal-gateway
+    ssl: false
+  portal_server:
+    domain_head: portal-server
+    ssl: false
+
+portal_ui:
+  replicaCount: 1
+  name: portal-ui
+  image: harbor.iquantex.com/kunlun/portal-ui
+  imagePullPolicy: Always
+  service:
+    type: NodePort
+  env: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+portal_server:
+  server:
+    port: 8080
+    replicaCount: 1
+    name: portal-server
+    image: harbor.iquantex.com/kunlun/portal-server
+    imagePullPolicy: Always
+    service:
+      type: ClusterIP
+    env: []
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 700m
+        memory: 512Mi
+  ingress:
+    enabled: true
+    annotations: {}
+    tls: []
+
+portal_gateway:
+  server:
+    port: 8080
+    replicaCount: 2
+    name: portal-gateway
+    useDefaultImage: true
+    image: harbor.iquantex.com/kunlun/spring-cloud-gateway
+    imagePullPolicy: Always
+    service:
+      type: ClusterIP
+    env: []
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 700m
+        memory: 512Mi
+  ingress:
+    enabled: true
+    annotations: {}
+    tls: []
+
+sso_server:
+  server:
+    port: 8080
+    replicaCount: 2
+    name: portal-auth
+    image: harbor.iquantex.com/kunlun/sso-server
+    imagePullPolicy: Always
+    service:
+      type: ClusterIP
+    env: []
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 700m
+        memory: 512Mi
+  ingress:
+    enabled: true
+    annotations: {}
+    tls: []
+
+oauth2_client:
+  server:
+    port: 8080
+    replicaCount: 1
+    name: oauth2-client
+    image: harbor.iquantex.com/kunlun/oauth2-client
+    imagePullPolicy: Always
+    service:
+      type: NodePort
+    env: []
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 700m
+        memory: 512Mi
+
+## k8s公共配置
+### 镜像拉取权限配置
+imagePullSecrets: []

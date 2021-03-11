@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.portal_gateway.server.name | quote }}
+  labels:
+{{ include "gateway.labels" . | indent 4 }}
+    app.name: {{ .Values.portal_gateway.server.name | quote }}
+spec:
+  replicas: {{ .Values.portal_gateway.server.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "gateway.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.name: {{ .Values.portal_gateway.server.name | quote }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "gateway.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.name: {{ .Values.portal_gateway.server.name | quote }}
+        app: {{ .Values.portal_gateway.server.name | quote }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Values.portal_gateway.server.name | quote }}
+          image: "{{ .Values.portal_gateway.server.image }}:{{ include "portal.tag" . }}"
+          imagePullPolicy: {{ .Values.portal_gateway.server.imagePullPolicy }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.portal_gateway.server.port }}
+              protocol: TCP
+          env:
+            # base
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: COMMIT.ID
+              value: {{ .Values.global.commit_id | quote }}
+            - name: SERVER.PORT
+              value: {{ .Values.portal_gateway.server.port | quote }}
+            - name: SPRING.APPLICATION.NAME
+              value: {{ .Values.portal_gateway.server.name | quote }}
+            - name: QUANTEX.SSO.COOKIE-DOMAIN
+              value: {{ .Values.global.domain | quote }}
+            - name: PORTAL-UI-HOST
+              value: "http://{{ .Values.portal_ui.name }}"
+            - name: PORTAL-SERVER-HOST
+              value: "http://{{ .Values.portal_server.server.name }}"
+            - name: SIGNING-KEY
+              value: {{ .Values.global.gateway.signing_key | quote }}
+            - name: CLIENT-ID
+              value: {{ .Values.global.gateway.client_id | quote }}
+            - name: CLIENT-SECRET
+              value: {{ .Values.global.gateway.client_secret | quote }}
+            - name: CICC-AUTH-HOST
+              value: {{ .Values.global.gateway.cicc_auth_host | quote }}
+            - name: PORTAL-URL
+              value: "http://{{ .Values.global.gateway.domain_head }}{{ .Values.global.domain}}"
+          resources:
+            {{- toYaml .Values.portal_gateway.server.resources | nindent 12 }}
+      {{- with .Values.portal_gateway.server.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.portal_gateway.server.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.portal_gateway.server.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

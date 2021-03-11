@@ -1,0 +1,12 @@
+test:
+  stage: test
+  script:
+    - helm lint .
+
+deploy:
+  stage: deploy
+  script:
+    - helm dep update && helm push . quantex
+  only:
+    - tags
+

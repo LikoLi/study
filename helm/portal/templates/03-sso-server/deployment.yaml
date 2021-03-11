@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.sso_server.server.name | quote }}
+  labels:
+{{ include "sso.labels" . | indent 4 }}
+    app.name: {{ .Values.sso_server.server.name | quote }}
+spec:
+  replicas: {{ .Values.sso_server.server.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "sso.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.name: {{ .Values.sso_server.server.name | quote }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "sso.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.name: {{ .Values.sso_server.server.name | quote }}
+        app: {{ .Values.sso_server.server.name | quote }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Values.sso_server.server.name | quote }}
+          image: "{{ .Values.sso_server.server.image }}:{{ include "portal.tag" . }}"
+          imagePullPolicy: {{ .Values.sso_server.server.imagePullPolicy }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.sso_server.server.port }}
+              protocol: TCP
+          env:
+            # base
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: commit.id
+              value: {{ .Values.global.commit_id | quote }}
+            - name: SERVER.PORT
+              value: {{ .Values.sso_server.server.port | quote }}
+            - name: SPRING.APPLICATION.NAME
+              value: {{ .Values.sso_server.server.name | quote }}
+            - name: PORTAL-ACCOUNT.PATH
+              value: {{ .Values.portal_server.server.name | quote}}
+            - name: PORTAL-ACCOUNT.DOMAIN
+              value: "http://{{ .Values.global.portal_server.domain_head }}{{ .Values.global.domain}}"
+            - name: PORTAL-ACCOUNT.HOST
+              value: "http://{{ .Values.portal_server.server.name }}"
+            - name: PORTAL-ACCOUNT.DEFAULT-CLIENT-REDIRECT-URI
+              value: "http://{{ .Values.global.gateway.domain_head }}{{ .Values.global.domain}}/{{ .Values.portal_gateway.server.name }}/login/oauth2/code/gateway"
+            - name: SPRING.DATASOURCE.URL
+              value: {{ .Values.global.datasource.sso_url }}
+            - name: SPRING.DATASOURCE.DRIVER-CLASS-NAME
+              value: {{ .Values.global.datasource.driver_class_name }}
+            - name: SPRING.DATASOURCE.USERNAME
+              value: {{ .Values.global.datasource.username }}
+            - name: SPRING.DATASOURCE.PASSWORD
+              value: {{ .Values.global.datasource.password }}
+            - name: SPRING.FLYWAY.ENABLED
+              value: {{ .Values.global.datasource.flyway | quote}}
+          resources:
+            {{- toYaml .Values.sso_server.server.resources | nindent 12 }}
+      {{- with .Values.sso_server.server.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.sso_server.server.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.sso_server.server.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

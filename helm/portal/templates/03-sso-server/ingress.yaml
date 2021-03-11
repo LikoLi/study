@@ -1,0 +1,28 @@
+---
+{{- if .Values.sso_server.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.sso_server.server.name }}
+  labels:
+    {{- include "sso.labels" . | nindent 4 }}
+  {{- with .Values.sso_server.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.global.sso.ssl }}
+  tls:
+    - hosts:
+      - {{ .Values.global.sso.domain_head }}{{ .Values.global.domain }}
+        secretName: {{ .Values.sso_server.ingress.tls.secretName }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.global.sso.domain_head }}{{ .Values.global.domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Values.sso_server.server.name }}
+              servicePort: 80
+{{- end }}

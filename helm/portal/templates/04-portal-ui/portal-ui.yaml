@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.portal_ui.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.portal_ui.name | quote }}
+spec:
+  replicas: {{ .Values.portal_ui.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "portal.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.name: {{ .Values.portal_ui.name | quote }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "portal.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.name: {{ .Values.portal_ui.name | quote }}
+        app: {{ .Values.portal_ui.name | quote }}
+        apptype: akka
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Values.portal_ui.name | quote }}
+          image: "{{ .Values.portal_ui.image }}:{{ include "portal.tag" . }}"
+          imagePullPolicy: {{ .Values.portal_ui.imagePullPolicy }}
+          ports:
+            - name: web
+              containerPort: 80
+              protocol: TCP
+          env:
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: commit.id
+              value: {{ .Values.global.commit_id | quote }}
+          resources:
+            {{- toYaml .Values.portal_ui.resources | nindent 12 }}
+      {{- with .Values.portal_ui.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.portal_ui.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.portal_ui.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.portal_ui.name | quote }}
+  labels:
+{{ include "portal.labels" . | indent 4 }}
+    app.name: {{ .Values.portal_ui.name | quote }}
+spec:
+  type: {{ .Values.portal_ui.service.type }}
+  ports:
+    - name: {{ .Values.portal_ui.name | quote }}
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "portal.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.name: {{ .Values.portal_ui.name | quote }}
