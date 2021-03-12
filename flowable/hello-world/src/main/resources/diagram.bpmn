@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1ww7p8p" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="8.2.1">
+  <bpmn:process id="Process_1dibhlg" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1q7xi6q">
+      <bpmn:outgoing>Flow_1ykjm5e</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0iewaik" name="123">
+      <bpmn:incoming>Flow_1ykjm5e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kiacdo</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_0n4um30">
+      <bpmn:incoming>Flow_1kiacdo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ykjm5e" sourceRef="StartEvent_1q7xi6q" targetRef="Activity_0iewaik" />
+    <bpmn:sequenceFlow id="Flow_1kiacdo" sourceRef="Activity_0iewaik" targetRef="Event_0n4um30" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1dibhlg">
+      <bpmndi:BPMNEdge id="Flow_1ykjm5e_di" bpmnElement="Flow_1ykjm5e">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="310" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kiacdo_di" bpmnElement="Flow_1kiacdo">
+        <di:waypoint x="410" y="120" />
+        <di:waypoint x="532" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1q7xi6q">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iewaik_di" bpmnElement="Activity_0iewaik">
+        <dc:Bounds x="310" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0n4um30_di" bpmnElement="Event_0n4um30">
+        <dc:Bounds x="532" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

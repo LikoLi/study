@@ -1,5 +1,7 @@
 package cn.likoli.study.flowable.helloworld;
 
+import org.apache.commons.io.IOUtils;
+import org.flowable.common.engine.impl.util.IoUtil;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricActivityInstance;
 import org.flowable.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration;
@@ -9,6 +11,7 @@ import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +25,7 @@ import java.util.Scanner;
  */
 public class HolidayRequest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ProcessEngineConfiguration cfg = new StandaloneInMemProcessEngineConfiguration()
                 .setJdbcUrl("jdbc:h2:mem:flowable;DB_CLOSE_DELAY=-1")
                 .setJdbcUsername("sa")
@@ -31,6 +34,7 @@ public class HolidayRequest {
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
 
         ProcessEngine processEngine = cfg.buildProcessEngine();
+//        ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResourceDefault().buildProcessEngine();
 
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();

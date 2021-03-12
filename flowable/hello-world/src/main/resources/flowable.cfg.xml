@@ -15,6 +15,11 @@
 
         <property name="mailServerHost" value="mail.my-corp.com" />
         <property name="mailServerPort" value="5025" />
+        <property name="eventListeners">
+            <list>
+                <bean class="cn.likoli.study.flowable.helloworld.event.MyEventListener" />
+            </list>
+        </property>
     </bean>
 
 </beans>
