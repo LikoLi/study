@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="financialReport" name="Monthly financial report reminder process">
+    <startEvent id="theStart" />
+    <sequenceFlow id="flow1" sourceRef="theStart" targetRef="writeReportTask"></sequenceFlow>
+
+
+    <userTask id="writeReportTask" name="Write monthly financial report" >
+        <documentation>
+          Write monthly financial report for publication to shareholders.
+        </documentation>
+        <potentialOwner>
+          <resourceAssignmentExpression>
+            <formalExpression>accountancy</formalExpression>
+          </resourceAssignmentExpression>
+        </potentialOwner>
+    </userTask>
+
+    <sequenceFlow id="flow2" sourceRef="writeReportTask" targetRef="verifyReportTask"></sequenceFlow>
+    
+    <userTask id="verifyReportTask" name="Verify monthly financial report">
+        <documentation>
+          Verify monthly financial report composed by the accountancy department.
+          This financial report is going to be sent to all the company shareholders.
+        </documentation>
+        <potentialOwner>
+          <resourceAssignmentExpression>
+            <formalExpression>management</formalExpression>
+          </resourceAssignmentExpression>
+        </potentialOwner>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="verifyReportTask" targetRef="theEnd"></sequenceFlow>
+
+    <endEvent id="theEnd" name="theEnd"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_FINANCIALREPORT">
+    <bpmndi:BPMNPlane bpmnElement="FINANCIALREPORT" id="BPMNPlane_FINANCIALREPORT">
+      <bpmndi:BPMNShape bpmnElement="theStart" id="BPMNShape_theStart">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="175.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="writeReportTask" id="BPMNShape_writeReportTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="315.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="verifyReportTask" id="BPMNShape_verifyReportTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="536.5" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
+        <omgdc:Bounds height="28.0" width="28.0" x="780.0" y="176.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="636.4499999999346" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="780.0" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="414.95000000000005" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="536.4999999999865" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="129.94999970750393" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="314.99999999991076" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
